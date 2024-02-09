@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import { FcBookmark } from "react-icons/fc";
 
-const Blog = ({ blog }) => {
-  const { title, name, img, date, author_img, time, hashtags } = blog;
+const Blog = ({ blog, handleMarkRead, markRead }) => {
+  const { title, name, img, date, author_img, time, hashtags, id} = blog;
+
+  
 
   return (
     <div className=" bg-white rounded-md mb-3">
@@ -19,15 +21,14 @@ const Blog = ({ blog }) => {
             <p className="text-sm"> {date}</p>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center cursor-pointer">
           {time <= 9 ? (
             <p className="text-sm mr-3">0{time} min read</p>
           ) : (
             <p className="text-sm mr-3">{time} min read</p>
           )}
 
-        
-          <FcBookmark className="fill-black text-xl text-blue cursor-pointer" />
+          <FcBookmark  onClick={() => handleMarkRead(blog)} className="fill-black text-xl text-blue " />
         </div>
       </div>
       <div className="px-4 pb-6">
@@ -40,7 +41,10 @@ const Blog = ({ blog }) => {
             </p>
           ))}
         </div>
-        <span className=" underline underline-offset-1 text-blue-600 cursor-pointer">
+        <span
+         onClick={() => markRead(id)}
+          className=" underline underline-offset-1 text-blue-600 cursor-pointer"
+        >
           Mark as read
         </span>
       </div>
@@ -50,6 +54,9 @@ const Blog = ({ blog }) => {
 
 Blog.propTypes = {
   blog: PropTypes.object,
+  indx: PropTypes.number,
+  handleMarkRead : PropTypes.func, 
+  markRead : PropTypes.func, 
 };
 
 export default Blog;

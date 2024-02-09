@@ -1,5 +1,5 @@
 import "./App.css";
-import Home from "./components/Header/Home/Home";
+import Home from "./components/Home/Home";
 import MainHeader from "./components/Header/MainHeader";
 
 function App() {
